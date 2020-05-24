@@ -15,7 +15,8 @@ long duration;
 int distance;
 
 void setup() {
-pinMode(13, OUTPUT);
+pinMode(10, OUTPUT);
+pinMode(11, OUTPUT);
 pinMode(trigPin, OUTPUT); // Sets the trigPin as an Output
 pinMode(echoPin, INPUT); // Sets the echoPin as an Input
 
@@ -42,20 +43,28 @@ distance= duration*0.034/2;
 Serial.print("Distance: ");
 Serial.print(distance);
 
-if ((distance<20)&&(distance >10)) {
+if (distance<7) {
   
   Serial.println("allumer");
-  allumer();
+  allumer_rouge();
+  eteindre_vert();
 } else {
   Serial.println("eteindre");
-  eteindre();
+  allumer_vert();
+  eteindre_rouge();
 }
 
 }
 
-void allumer() {
-  digitalWrite(13, HIGH);
+void allumer_rouge() {
+  digitalWrite(10, HIGH);
 }
-void eteindre() {
-  digitalWrite(13, LOW);
+void eteindre_rouge() {
+  digitalWrite(10, LOW);
+}
+void allumer_vert() {
+  digitalWrite(11, HIGH);
+}
+void eteindre_vert() {
+  digitalWrite(11, LOW);
 }
